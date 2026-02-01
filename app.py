@@ -204,6 +204,7 @@ def register():
             email=email,
             name=name,
             password=generate_password_hash(password, method="scrypt"),
+            is_admin=True,
         )
         db.session.add(new_user)
         db.session.commit()
