@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RENE CELL 潤妮秀 - 韓國頂級居家微整護膚</title>
+
+    <link rel="icon" href="{{ url_for('static', filename='images/favicon.png') }}" type="image/png">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700&family=Noto+Serif+TC:wght@700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand serif-font fw-bold fs-3 text-primary-brand" href="{{ url_for('index') }}">RENE
+                CELL</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="#about">品牌故事</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#products">明星商品</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#transformation">煥膚見證</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#news">最新動態</a></li>
+
+                    <li class="nav-item"><a class="nav-link" href="#beauty">美力學院</a></li>
+
+                    <li class="nav-item"><a class="nav-link" href="#opportunity">事業機會</a></li>
+
+                    <li class="nav-item ms-lg-3">
+                        {% if current_user.is_authenticated %}
+                        <a href="{{ url_for('dashboard') }}" class="btn btn-brand btn-sm me-2">會員中心</a>
+                        {% else %}
+                        <a href="{{ url_for('login') }}" class="btn btn-brand btn-sm me-2">會員登入</a>
+                        {% endif %}
+
+                        <a href="https://line.me/R/ti/p/@512zaftd?ts=01142042&oat_content=url#~"
+                            class="btn btn-brand btn-sm me-2" target="_blank">加入經銷</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="pt-0">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 order-2 order-lg-1">
+                    <span class="badge bg-light-brand text-primary-brand mb-3 px-3 py-2 rounded-pill">#啟動妳的美力事業</span>
+                    <h1 class="display-4 fw-bold mb-4">逆齡奇蹟 X 財富自由<br>開啟妳的<span class="text-primary-brand">雙贏人生</span>
+                    </h1>
+                    <p class="lead text-secondary mb-5">在忙碌生活中，妳值得擁有更好的選擇。RENE CELL 提供頂尖生物科技產品與系統化創業模組，協助 5,000+
+                        位夥伴找回自信光采，實現時間與財富的雙重自由。
+                    </p>
+                    <div class="d-flex gap-3">
+                        <a href="#products" class="btn btn-brand btn-lg">探索保養奇蹟</a>
+                        <a href="#opportunity" class="btn btn-outline-brand btn-lg">了解加盟計畫</a>
+                    </div>
+                    <div class="mt-5 pt-4 border-top">
+                        <p class="small text-muted mb-2">榮獲各界肯定 & 媒體報導：</p>
+                        <div class="d-flex gap-4 opacity-50">
+                            <span><i class="bi bi-award-fill"></i> Vogue 年度推薦</span>
+                            <span><i class="bi bi-patch-check-fill"></i> SGS 安心認證</span>
+                            <span><i class="bi bi-star-fill"></i> 國家生技大獎</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 order-1 order-lg-2 mb-5 mb-lg-0 text-center">
+                    <img src="{{ url_for('static', filename='images/home_banner.jpg') }}?v={{ version }}"
+                        class="img-fluid rounded-4 shadow-lg" alt="RENE CELL 潤妮秀 韓國居家微整保養品主視覺">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="bg-white py-5">
+        <div class="container">
+            <div class="row align-items-center mt-5">
+                <div class="col-lg-5 mb-4 mb-lg-0">
+                    <div class="position-relative">
+                        <div class="position-absolute top-0 start-0 w-100 h-100 border border-brand border-2 rounded-4"
+                            style="transform: translate(-15px, -15px); z-index: 0;"></div>
+                        <img src="{{ url_for('static', filename='images/about_brand.jpg') }}?v={{ version }}"
+                            class="img-fluid rounded-4 shadow position-relative" loading="lazy" style="z-index: 1;"
+                            alt="品牌形象">
+                    </div>
+                </div>
+                <div class="col-lg-7 ps-lg-5">
+                    <h2 class="display-5 fw-bold serif-font my-3">全球首席 陳姿蒨</h2>
+                    <span class="text-brand fw-bold ls-1">SINCE 2011 • KOREA CHARIS</span>
+                    <h3 class="display-5 fw-bold serif-font my-3">來自韓國的<br>居家微整科技</h3>
+                    <p class="lead text-dark fw-bold">「不只肌膚逆齡，更要心態逆齡，實現永遠逆齡。」</p>
+                    <p class="text-secondary text-justify">
+                        RENE CELL創立於 2011 年韓國 Charis 集團，是全球領先的「居家微整科技」護膚品牌。我們打破傳統保養界限，提倡「以皮膚深層填滿」取代僅在表面塗抹的新概念。
+                    </p>
+                    <p class="text-secondary text-justify">
+                        我們擁有自主研發的國家級實驗室，並致力於打造百年企業。這不僅是一份美麗的事業，更是一份追求健康、富饒生活的承諾。
+                    </p>
+
+                    <div class="row mt-4 g-3">
+                        <div class="col-6 col-md-4">
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-globe-asia-australia fs-2 text-brand me-3"></i>
+                                <div>
+                                    <h6 class="fw-bold mb-0">行銷全球</h6>
+                                    <small class="text-muted">國際化佈局</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4">
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-building-check fs-2 text-brand me-3"></i>
+                                <div>
+                                    <h6 class="fw-bold mb-0">百年願景</h6>
+                                    <small class="text-muted">相生平生理念</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-5">
+                        <a href="#products" class="btn btn-brand rounded-pill px-4 py-2">探索商品</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="science" class="bg-light-brand py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h5 class="text-brand ls-2">SKIN SCIENCE</h5>
+                <h2 class="fw-bold serif-font">獨家 4 大皮膚科學</h2>
+                <p class="text-muted">結合頂尖科研與天然成分，層層滲透，喚醒肌膚原生力量</p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="science-card h-100 p-4 text-center border-0 rounded-4 bg-white shadow-sm transition-up">
+                        <div class="number-watermark">01</div>
+                        <div class="icon-box mb-3 text-brand"><i class="bi bi-layers-half fs-1"></i></div>
+                        <h5 class="fw-bold serif-font mb-3">微分子高滲透</h5>
+                        <p class="small text-secondary text-justify mb-0">
+                            突破吸收瓶頸，透過微分子技術實現高效滲透，層層調理肌膚紋理，穩定肌膚原生保護力。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3">
+                    <div class="science-card h-100 p-4 text-center border-0 rounded-4 bg-white shadow-sm transition-up">
+                        <div class="number-watermark">02</div>
+                        <div class="icon-box mb-3 text-brand"><i class="bi bi-flower1 fs-1"></i></div>
+                        <h5 class="fw-bold serif-font mb-3">天然活酵秘製</h5>
+                        <p class="small text-secondary text-justify mb-0">
+                            嚴選天然成分，透過獨家酵母秘製發酵工藝，讓植萃精華倍速激升，帶來更有感的保養效能。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3">
+                    <div class="science-card h-100 p-4 text-center border-0 rounded-4 bg-white shadow-sm transition-up">
+                        <div class="number-watermark">03</div>
+                        <div class="icon-box mb-3 text-brand"><i class="bi bi-share fs-1"></i></div>
+                        <h5 class="fw-bold serif-font mb-3">蛋白質肌密融合</h5>
+                        <p class="small text-secondary text-justify mb-0">
+                            破解肌密關鍵，完美融合 Peptide(胜肽)、EGF(肌活因子) 與 Elastin(彈性蛋白)，重現彈潤。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3">
+                    <div class="science-card h-100 p-4 text-center border-0 rounded-4 bg-white shadow-sm transition-up">
+                        <div class="number-watermark">04</div>
+                        <div class="icon-box mb-3 text-brand"><i class="bi bi-shield-check fs-1"></i></div>
+                        <h5 class="fw-bold serif-font mb-3">舒敏肌源調理</h5>
+                        <p class="small text-secondary text-justify mb-0">
+                            利用與類肌膚構造相似的成分，溫和親膚，標榜即便是敏弱肌也能安心適用的溫柔呵護。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="lisense" class="bg-white py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="mt-5 pt-4">
+                    <div class="row text-center g-3">
+                        <div class="col-4">
+                            <div class="mb-2">
+                                <i class="bi bi-building-check text-brand fs-2"></i>
+                            </div>
+                            <h6 class="fw-bold mb-1" style="font-size: 15px;">cGMP 頂尖工藝</h6>
+                            <p class="text-muted mb-0" style="font-size: 11px;">韓國僅百家企業獲殊榮</p>
+                        </div>
+
+                        <div class="col-4 border-start border-end">
+                            <div class="mb-2">
+                                <i class="bi bi-patch-check text-brand fs-2"></i>
+                            </div>
+                            <h6 class="fw-bold mb-1" style="font-size: 15px;">ISO 9001 認證</h6>
+                            <p class="text-muted mb-0" style="font-size: 11px;">國際品質管理標準體系</p>
+                        </div>
+
+                        <div class="col-4">
+                            <div class="mb-2">
+                                <i class="bi bi-globe-americas text-brand fs-2"></i>
+                            </div>
+                            <h6 class="fw-bold mb-1" style="font-size: 15px;">多國衛生許可</h6>
+                            <p class="text-muted mb-0" style="font-size: 11px;">全系列產品檢驗合格</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 text-center">
+                        <a href="#products" class="btn btn-brand rounded-pill px-4 py-2 shadow-sm">探索全系列商品</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="products" class="bg-light-brand position-relative">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold">明星熱銷系列</h2>
+                <p class="text-muted">結合尖端科技與自然植萃，邀您見證肌膚與身型的改變</p>
+
+                <div class="btn-group mt-3" role="group" id="portfolio-flters" aria-label="產品分類篩選">
+                    <button type="button" class="btn btn-active btn-outline-brand" data-filter="skincare">護膚系列</button>
+                    <button type="button" class="btn btn-outline-brand" data-filter="premium">高級系列</button>
+                    <button type="button" class="btn btn-outline-brand" data-filter="mask">面膜系列</button>
+                    <button type="button" class="btn btn-outline-brand" data-filter="special">特別護理</button>
+                </div>
+            </div>
+
+            <div class="position-relative px-2 px-md-4">
+
+                <button
+                    class="btn btn-white rounded-circle shadow position-absolute top-50 start-0 translate-middle-y z-2 d-none d-md-flex align-items-center justify-content-center"
+                    id="scroll-left"
+                    style="width: 45px; height: 45px; margin-left: -10px; opacity: 0; transition: opacity 0.3s;"
+                    aria-label="向左捲動">
+                    <i class="bi bi-chevron-left text-brand fs-5"></i>
+                </button>
+
+                <div id="product-list" class="py-2">
+                </div>
+
+                <button
+                    class="btn btn-white rounded-circle shadow position-absolute top-50 end-0 translate-middle-y z-2 d-none d-md-flex align-items-center justify-content-center"
+                    id="scroll-right" style="width: 45px; height: 45px; margin-right: -10px;" aria-label="向右捲動">
+                    <i class="bi bi-chevron-right text-brand fs-5"></i>
+                </button>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="transformation" class="py-5 overflow-hidden bg-white">
+        <div class="container">
+            <div class="row align-items-center mt-5">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <div class="position-relative">
+                        <div class="position-absolute top-0 start-0 translate-middle bg-white rounded-circle shadow-sm d-none d-md-block"
+                            style="width: 120px; height: 120px; z-index: 0; opacity: 0.8;"></div>
+                        <div class="position-absolute bottom-0 end-0 translate-middle-x bg-brand rounded-circle opacity-10 d-none d-md-block"
+                            style="width: 200px; height: 200px; z-index: 0;"></div>
+
+                        <div class="position-relative" style="z-index: 1;">
+                            <img src="{{ url_for('static', filename='images/transformation.jpg') }}?v={{ version }}"
+                                class="img-fluid rounded-4 shadow-lg border border-4 border-white"
+                                alt="RENE CELL 使用前後對比 真實肌膚蛻變見證" loading="lazy">
+
+                            <div
+                                class="position-absolute bottom-0 start-0 m-3 bg-white px-3 py-2 rounded-3 shadow-sm d-flex align-items-center animate-fade-up">
+                                <i class="bi bi-calendar-check text-brand me-2 fs-5"></i>
+                                <div>
+                                    <small class="d-block text-muted" style="font-size: 10px;">TIMELINE</small>
+                                    <span class="fw-bold text-dark">114.03 - NOW</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 ps-lg-5">
+                    <span class="badge bg-brand text-white px-3 py-2 rounded-pill mb-3">#真實有感見證</span>
+                    <h2 class="display-6 fw-bold serif-font mb-4">這不只是保養，<br>是一場肌膚的<span class="text-brand">重生旅程</span>。
+                    </h2>
+
+                    <figure class="bg-white p-3 rounded-3 border-start border-4 border-brand shadow-sm mb-4">
+                        <blockquote class="blockquote mb-0">
+                            <p class="fs-6 text-secondary fst-italic">
+                                「以前總覺得臉色暗沉、看起來很累。自從 114 年 3 月遇見 RENE
+                                CELL，我才發現原來素顏也可以這麼有自信。現在的皮膚不只變亮，那種從底層透出來的緊緻光澤，真的像鑽石一樣！」
+                            </p>
+                        </blockquote>
+                        <figcaption class="blockquote-footer mt-2 mb-0 text-end">
+                            見證者 <cite title="Source Title">全球首席 陳姿蒨 (持續使用中)</cite>
+                        </figcaption>
+                    </figure>
+
+                    <div class="row g-4 mb-4">
+                        <div class="col-4 text-center">
+                            <div class="mb-2 text-brand"><i class="bi bi-brightness-high fs-3"></i></div>
+                            <h6 class="fw-bold mb-0">擊退暗沉</h6>
+                            <small class="text-muted">透亮光澤感</small>
+                        </div>
+                        <div class="col-4 text-center border-start border-end">
+                            <div class="mb-2 text-brand"><i class="bi bi-arrows-collapse fs-3"></i></div>
+                            <h6 class="fw-bold mb-0">緊緻拉提</h6>
+                            <small class="text-muted">輪廓線提升</small>
+                        </div>
+                        <div class="col-4 text-center">
+                            <div class="mb-2 text-brand"><i class="bi bi-gem fs-3"></i></div>
+                            <h6 class="fw-bold mb-0">細緻膚質</h6>
+                            <small class="text-muted">平滑如水煮蛋</small>
+                        </div>
+                    </div>
+
+                    <div class="d-flex gap-3">
+                        <a href="https://line.me/R/ti/p/@512zaftd?ts=01142042&oat_content=url#~"
+                            class="btn btn-brand rounded-pill px-4" target="_blank" rel="noopener noreferrer">
+                            我也想改變<i class="bi bi-arrow-right-short"></i>
+                        </a>
+                        <a href="#products" class="btn btn-outline-dark rounded-pill px-4 align-items-center d-flex">
+                            查看明星商品
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="news" class="bg-light-brand py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <h3 class="fw-bold mb-4"><i class="bi bi-megaphone"></i> 最新動態</h3>
+                    <div class="list-group">
+                        <a href="#" class="list-group-item list-group-item-action border-0 mb-2 rounded shadow-sm">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h6 class="mb-1 fw-bold">【年度盛典】2026 春季表揚大會，璀璨報名中！</h6>
+                                <small class="text-muted">3天前</small>
+                            </div>
+                            <small class="text-brand">#活動快訊</small>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action border-0 mb-2 rounded shadow-sm">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h6 class="mb-1 fw-bold">【新品上市】夜間修護霜限時 85 折，煥膚趁現在</h6>
+                                <small class="text-muted">1週前</small>
+                            </div>
+                            <small class="text-brand">#促銷活動</small>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action border-0 mb-2 rounded shadow-sm">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h6 class="mb-1 fw-bold">【榮耀時刻】恭喜陳首席榮獲國家生技醫療品質獎</h6>
+                                <small class="text-muted">2週前</small>
+                            </div>
+                            <small class="text-brand">#品牌榮耀</small>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-lg-6" id="academy">
+                    <h3 class="fw-bold mb-4"><i class="bi bi-question-circle"></i> 常見問題 FAQ</h3>
+                    <div class="list-group" id="questionGroup">
+                        <div class="q1">
+                            <button data-bs-toggle="collapse" data-bs-target="#Q1-collapse" aria-expanded="false"
+                                class="btn list-group-item list-group-item-action border-0 mb-2 rounded shadow-sm">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h6 class="mb-1 fw-bold"> RENE CELL 產品是全天然原料製作的嗎？</h6>
+                                </div>
+                                <small class="text-brand">#成分說明</small>
+                            </button>
+                            <div class="collapse" id="Q1-collapse" data-bs-parent="#questionGroup">
+                                <div class="card card-body border-0 small text-muted">
+                                    RENE CELL
+                                    產品堅持以高比例天然原料為主，運用純天然萃取技術提取有效成分。我們嚴格剔除對人體與環境有害的化學物質，致力於在「天然溫和」與「科學功效」間取得最佳平衡，給予肌膚最安心的呵護。
+                                </div>
+                            </div>
+                        </div>
+                        <div class="q2">
+                            <button data-bs-toggle="collapse" data-bs-target="#Q2-collapse" aria-expanded="false"
+                                class="btn list-group-item list-group-item-action border-0 mb-2 rounded shadow-sm">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h6 class="mb-1 fw-bold">小朋友也可以使用你們的產品嗎？</h6>
+                                </div>
+                                <small class="text-brand">#適用對象</small>
+                            </button>
+                            <div class="collapse" id="Q2-collapse" data-bs-parent="#questionGroup">
+                                <div class="card card-body border-0 small text-muted">
+                                    可以的！我們的產品排除了有害化學成分，溫和安全。對於兒童較脆弱的肌膚，我們特別推薦「保濕修護乳」作為日常護理。若冬季乾燥，可適量搭配「滋潤修護精華素」或防曬產品，加強防護。
+                                </div>
+                            </div>
+                        </div>
+                        <div class="q3">
+                            <button data-bs-toggle="collapse" data-bs-target="#Q3-collapse" aria-expanded="false"
+                                class="btn list-group-item list-group-item-action border-0 mb-2 rounded shadow-sm">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h6 class="mb-1 fw-bold">敏感肌或有皮膚炎狀況可以使用嗎？</h6>
+                                </div>
+                                <small class="text-brand">#膚質諮詢</small>
+                            </button>
+                            <div class="collapse" id="Q3-collapse" data-bs-parent="#questionGroup">
+                                <div class="card card-body border-0 small text-muted">
+                                    敏感肌與痘痘肌膚皆可安心使用。雖然產品並非藥品，無法宣稱療效，但溫和的成分有助於舒緩不適。建議敏感肌膚避開較高活性的「胎盤神奇系列1劑」，並依據肌膚當下狀況調整用量與頻率，或諮詢我們的美容顧問。
+                                </div>
+                            </div>
+                        </div>
+                        <div class="q4">
+                            <button data-bs-toggle="collapse" data-bs-target="#Q4-collapse" aria-expanded="false"
+                                class="btn list-group-item list-group-item-action border-0 mb-2 rounded shadow-sm">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h6 class="mb-1 fw-bold"> 使用多肽乳霜為什麼會有刺痛感？</h6>
+                                </div>
+                                <small class="text-brand">#使用反應</small>
+                            </button>
+                            <div class="collapse" id="Q4-collapse" data-bs-parent="#questionGroup">
+                                <div class="card card-body border-0 small text-muted">
+                                    這通常是肌膚極度缺水的信號。維生素C精華為弱酸性，加上多肽霜富含高營養成分，接觸乾燥肌膚時可能會產生短暫的活躍反應。建議先加強基礎保濕，並採取「少量多次」的方式讓肌膚逐漸適應，刺痛感會隨著膚況改善而消失。
+                                </div>
+                            </div>
+                        </div>
+                        <div class="q5">
+                            <button data-bs-toggle="collapse" data-bs-target="#Q5-collapse" aria-expanded="false"
+                                class="btn list-group-item list-group-item-action border-0 mb-2 rounded shadow-sm">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h6 class="mb-1 fw-bold">使用很久了，為什麼突然出現不良反應？</h6>
+                                </div>
+                                <small class="text-brand">#長期護理</small>
+                            </button>
+                            <div class="collapse" id="Q5-collapse" data-bs-parent="#questionGroup">
+                                <div class="card card-body border-0 small text-muted">
+                                    若長期使用都很穩定，突然出現反應通常與「身體內部」或「外在環境」改變有關。例如：免疫力下降、荷爾蒙波動（生理期/更年期）、季節交替、甚至壓力或生活習慣改變。這時建議簡化保養步驟，多休息，觀察膚況變化。
+                                </div>
+                            </div>
+                        </div>
+                        <div class="q6">
+                            <button data-bs-toggle="collapse" data-bs-target="#Q6-collapse" aria-expanded="false"
+                                class="btn list-group-item list-group-item-action border-0 mb-2 rounded shadow-sm">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h6 class="mb-1 fw-bold"> 剛開始使用覺得臉很緊繃，是太乾嗎？</h6>
+                                </div>
+                                <small class="text-brand">#使用反應</small>
+                            </button>
+                            <div class="collapse" id="Q6-collapse" data-bs-parent="#questionGroup">
+                                <div class="card card-body border-0 small text-muted">
+                                    請放心，這並非乾燥！這是 RENE CELL 獨家 PTD 滲透技術與 Peptasome
+                                    成分作用的結果。當有效成分深入肌底，肌膚會產生向上的「拉提感」與「飽滿感」，常被誤認為緊繃。這其實是肌膚正在恢復彈性的好現象喔！
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="beauty" class="bg-white py-5">
+        <div class="container">
+            <h3 class="fw-bold mb-4"><i class="bi bi-journal-bookmark"></i> 美力學院</h3>
+
+            <div class="row" id="home-article-container">
+            </div>
+
+            <div class="text-center mt-4">
+                <a href="{{ url_for('academy') }}" class="btn btn-outline-brand rounded-pill px-5 py-2">
+                    點我前往美力學院 <i class="bi bi-arrow-right-short"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <div class="modal fade" id="dynamicArticleModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+            <div class="modal-content border-0 rounded-4">
+                <div class="modal-header border-0 pb-0">
+                    <div class="d-flex align-items-center">
+                        <span class="badge bg-light-brand text-brand me-2" id="modal-category">分類</span>
+                        <h4 class="fw-bold serif-font mb-0 text-truncate" style="max-width: 500px;" id="modal-title">
+                            文章標題</h4>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body px-4 py-3">
+                    <img src="" class="img-fluid rounded-3 mb-4 shadow-sm w-100 object-fit-cover" id="modal-img"
+                        alt="文章配圖">
+                    <div id="modal-content" class="text-muted"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section id="opportunity" class="bg-brand-light py-5">
+        <div class="container">
+            <div class="col-lg-6 mb-4">
+                <h2 class="fw-bold">為什麼選擇 RENE CELL？</h2>
+                <p class="text-muted">低門檻、零庫存壓力，讓妳在家也能輕鬆經營全球美力事業。</p>
+            </div>
+            <div class="row mb-5">
+                <div class="col-lg-6">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <h4>我們能帶給妳</h4>
+                            <ul class="list-unstyled mt-4">
+                                <li class="mb-3 d-flex align-items-center">
+                                    <i class="bi bi-check-circle text-primary-brand me-3 fs-4"></i>
+                                    <div>
+                                        <strong>Beauty - 專業美學支援</strong><br>
+                                        <span class="small text-muted">提供完整文案、素材與線上課程，零經驗也能快速上手。</span>
+                                    </div>
+                                </li>
+                                <li class="mb-3 d-flex align-items-center">
+                                    <i class="bi bi-check-circle text-primary-brand me-3 fs-4"></i>
+                                    <div>
+                                        <strong>Healthy - 健康的事業體質</strong><br>
+                                        <span class="small text-muted">制度健全，無強迫囤貨壓力，讓妳經營無負擔。</span>
+                                    </div>
+                                </li>
+                                <li class="mb-3 d-flex align-items-center">
+                                    <i class="bi bi-check-circle text-primary-brand me-3 fs-4"></i>
+                                    <div>
+                                        <strong>Rich - 共享財富碩果</strong><br>
+                                        <span class="small text-muted">透明公開的獎金結構，讓每一分努力都轉化為實質回報。</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-6">
+                            <h4>品牌願景</h4>
+                            <ul class="list-unstyled mt-4">
+                                <li class="mb-3 d-flex align-items-center">
+                                    <i class="bi bi-check-circle-fill text-primary-brand me-3 fs-4"></i>
+                                    <div>
+                                        <strong>承諾富饒的生活</strong><br>
+                                        <span class="small text-muted">不只是收入的增加，更是生活品質與心靈的全面提升。</span>
+                                    </div>
+                                </li>
+                                <li class="mb-3 d-flex align-items-center">
+                                    <i class="bi bi-check-circle-fill text-primary-brand me-3 fs-4"></i>
+                                    <div>
+                                        <strong>永續經營的事業</strong><br>
+                                        <span class="small text-muted">打造一個可以傳承、值得投入一輩子的志業。</span>
+                                    </div>
+                                </li>
+                                <li class="mb-3 d-flex align-items-center">
+                                    <i class="bi bi-check-circle-fill text-primary-brand me-3 fs-4"></i>
+                                    <div>
+                                        <strong>培育卓越人才</strong><br>
+                                        <span class="small text-muted">透過系統化教育，協助每位夥伴成為獨當一面的領導者。</span>
+                                    </div>
+                                </li>
+                                <li class="mb-3 d-flex align-items-center">
+                                    <i class="bi bi-check-circle-fill text-primary-brand me-3 fs-4"></i>
+                                    <div>
+                                        <strong>分享美好的回憶</strong><br>
+                                        <span class="small text-muted">與志同道合的夥伴一起成長、旅遊，創造珍貴回憶。</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 text-center">
+                    <img src="{{ url_for('static', filename='images/opportunity.jpg') }}?v={{ version }}"
+                        class="img-fluid rounded-3 shadow-sm" alt="RENE CELL 獎勵制度說明" loading="lazy">
+                </div>
+            </div>
+
+            <h3 class="text-center fw-bold mb-4">夥伴成功故事</h3>
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="testimonial-card d-flex align-items-center">
+                        <img src="https://placehold.co/80x80/ccc/333?text=User" class="rounded-circle me-3" alt="陳小姐見證">
+                        <div>
+                            <p class="mb-1 fst-italic">「原本只是全職媽媽，透過這份事業，我找回了自信，不僅財富獨立，更帶全家人免費出國旅遊！」</p>
+                            <small class="fw-bold text-primary-brand">— 陳小姐, 高階執行總監</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="testimonial-card d-flex align-items-center">
+                        <img src="https://placehold.co/80x80/ccc/333?text=User" class="rounded-circle me-3" alt="林同學見證">
+                        <div>
+                            <p class="mb-1 fst-italic">「大學時期就開始經營，畢業後收入已經超越一般上班族，感謝公司強大的培訓系統讓我快速成長。」</p>
+                            <small class="fw-bold text-primary-brand">— 林同學, 黃金經銷商</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="video-gallery" class="py-5 bg-white">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h5 class="text-brand ls-2">MEDIA GALLERY</h5>
+                <h2 class="fw-bold serif-font">影音專區</h2>
+                <p class="text-muted">探索更多關於肌膚保養的秘密與使用者見證</p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-8">
+                    <div class="ratio ratio-16x9 rounded-4 shadow-lg overflow-hidden border border-1 position-relative">
+                        <iframe id="mainVideoFrame" src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0"
+                            title="Main Video"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="mt-3">
+                        <h4 class="fw-bold serif-font" id="mainVideoTitle">RENE CELL 品牌形象影片</h4>
+                        <p class="text-muted small" id="mainVideoDesc">透過鏡頭，帶您深入了解 RENE CELL 的科研實驗室與護膚哲學。</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="video-list-container h-100 rounded-4 border bg-light overflow-hidden">
+                        <div class="p-3 bg-white border-bottom fw-bold text-brand">
+                            <i class="bi bi-play-circle-fill me-2"></i>更多影片
+                        </div>
+
+                        <div class="video-list-scroll p-2" style="max-height: 400px; overflow-y: auto;">
+
+                            <div class="video-item p-2 rounded-3 mb-2 d-flex align-items-center cursor-pointer active"
+                                onclick="changeVideo('dQw4w9WgXcQ', 'RENE CELL 品牌形象影片', '透過鏡頭，帶您深入了解 RENE CELL 的科研實驗室與護膚哲學。', this)">
+                                <div class="flex-shrink-0 position-relative">
+                                    <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/mqdefault.jpg"
+                                        class="rounded-3 shadow-sm" width="120" alt="thumb">
+                                    <div class="play-overlay"><i class="bi bi-play-fill"></i></div>
+                                </div>
+                                <div class="flex-grow-1 ms-3">
+                                    <h6 class="mb-1 fw-bold small text-truncate-2">品牌形象影片</h6>
+                                    <small class="text-muted" style="font-size: 10px;">03:45</small>
+                                </div>
+                            </div>
+
+                            <div class="video-item p-2 rounded-3 mb-2 d-flex align-items-center cursor-pointer"
+                                onclick="changeVideo('LXb3EKWsInQ', '4大核心技術解密', '獨家微分子滲透技術，如何讓保養品直達肌底？', this)">
+                                <div class="flex-shrink-0 position-relative">
+                                    <img src="https://img.youtube.com/vi/LXb3EKWsInQ/mqdefault.jpg"
+                                        class="rounded-3 shadow-sm" width="120" alt="thumb">
+                                </div>
+                                <div class="flex-grow-1 ms-3">
+                                    <h6 class="mb-1 fw-bold small text-truncate-2">4大核心技術解密</h6>
+                                    <small class="text-muted" style="font-size: 10px;">05:12</small>
+                                </div>
+                            </div>
+
+                            <div class="video-item p-2 rounded-3 mb-2 d-flex align-items-center cursor-pointer"
+                                onclick="changeVideo('9bZkp7q19f0', '江南 Style 護膚潮流', '韓國江南貴婦都在用的保養祕訣大公開！', this)">
+                                <div class="flex-shrink-0 position-relative">
+                                    <img src="https://img.youtube.com/vi/9bZkp7q19f0/mqdefault.jpg"
+                                        class="rounded-3 shadow-sm" width="120" alt="thumb">
+                                </div>
+                                <div class="flex-grow-1 ms-3">
+                                    <h6 class="mb-1 fw-bold small text-truncate-2">江南 Style 護膚潮流</h6>
+                                    <small class="text-muted" style="font-size: 10px;">04:20</small>
+                                </div>
+                            </div>
+
+                            <div class="video-item p-2 rounded-3 mb-2 d-flex align-items-center cursor-pointer"
+                                onclick="changeVideo('JGwWNGJdvx8', '使用者見證 - 陳小姐', '使用三個月後，原本暗沉的肌膚竟然發光了！', this)">
+                                <div class="flex-shrink-0 position-relative">
+                                    <img src="https://img.youtube.com/vi/JGwWNGJdvx8/mqdefault.jpg"
+                                        class="rounded-3 shadow-sm" width="120" alt="thumb">
+                                </div>
+                                <div class="flex-grow-1 ms-3">
+                                    <h6 class="mb-1 fw-bold small text-truncate-2">使用者見證 - 陳小姐</h6>
+                                    <small class="text-muted" style="font-size: 10px;">02:15</small>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h4 class="serif-font fw-bold mb-3">RENE CELL</h4>
+                    <p class="small text-secondary mb-0">致力於提供最純淨的產品與最公平的事業平台。</p>
+
+                    <div class="small text-secondary mt-3 pt-2 border-top border-secondary border-opacity-25"
+                        style="max-width: 250px;">
+                        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span id="busuanzi_container_site_pv" style="display:none">
+                                <i class="bi bi-eye-fill me-1"></i> 瀏覽
+                                <span id="busuanzi_value_site_pv" class="text-white fw-bold ms-1"></span>
+                            </span>
+
+                            <span class="mx-2 opacity-25">|</span>
+
+                            <span id="busuanzi_container_site_uv" style="display:none">
+                                <i class="bi bi-person-fill me-1"></i> 訪客
+                                <span id="busuanzi_value_site_uv" class="text-white fw-bold ms-1"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <h5 class="fw-bold mb-3">快速連結</h5>
+                    <ul class="list-unstyled small">
+                        <li><a href="#about" class="text-secondary text-decoration-none hover-white">關於我們</a></li>
+                        <li><a href="#academy" class="text-secondary text-decoration-none hover-white">常見問題</a></li>
+                        <li><a href="#opportunity" class="text-secondary text-decoration-none hover-white">事業機會</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-4">
+                    <h5 class="fw-bold mb-3">聯絡我們</h5>
+                    <p class="small text-secondary">客服專線：0800-000-000<br>Email: service@renecell.life</p>
+                    <div class="d-flex gap-3">
+                        <a href="https://www.facebook.com" class="text-white text-decoration-none" aria-label="Facebook"
+                            target="_blank"><i class="bi bi-facebook fs-4"></i></a>
+                        <a href="https://www.instagram.com" class="text-white text-decoration-none"
+                            aria-label="Instagram" target="_blank"><i class="bi bi-instagram fs-4"></i></a>
+                        <a href="https://line.me/R/ti/p/@512zaftd?ts=01142042&oat_content=url#~"
+                            class="text-white text-decoration-none" aria-label="Line" target="_blank"><i
+                                class="bi bi-line fs-4"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center pt-4 border-top border-secondary mt-4 small text-secondary">
+                &copy; MUMU CREATIVE 2025 All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <div class="modal fade" id="dynamicProductModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable">
+            <div class="modal-content border-0 rounded-4">
+                <div class="modal-header border-0 pb-0">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-0">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/product.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/academy.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

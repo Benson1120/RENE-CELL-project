@@ -1,0 +1,637 @@
+/* =========================================
+   1. 全域變數 (Variables)
+   ========================================= */
+:root {
+    /* 核心品牌色 */
+    --brand-color: #d63384;
+    /* 主色 (洋紅粉) */
+    --brand-hover: #c02a74;
+    /* 深色 (Hover用) */
+    --brand-light: #fce4ec;
+    /* 極淺粉 (背景用) */
+
+    /* 輔助色 */
+    --platinum-color: #fff9a6;
+    /* 白金色 */
+
+    /* 文字顏色 */
+    --text-dark: #5A5A5A;
+    /* 暖灰文字 */
+    --text-light: #888888;
+    /* 淺灰說明文字 */
+}
+
+/* =========================================
+   2. 基礎設定 (Base & Typography)
+   ========================================= */
+body {
+    font-family: 'Noto Sans TC', sans-serif;
+    color: var(--text-dark);
+    padding-top: 76px;
+    /* 避開 Fixed Navbar */
+}
+
+/* 襯線字體設定 (標題與強調文字) */
+h1,
+h2,
+h3,
+h4,
+.serif-font {
+    font-family: 'Noto Serif TC', "Times New Roman", "PMingLiU", serif;
+}
+
+section {
+    padding: 80px 0;
+}
+
+/* 讓文章內的文字左右對齊 */
+.text-justify {
+    text-align: justify;
+}
+
+/* 字元間距 */
+.ls-1 {
+    letter-spacing: 1px;
+}
+
+.ls-2 {
+    letter-spacing: 2px;
+}
+
+/* 讓引用區塊看起來更精緻 */
+blockquote p {
+    line-height: 1.8;
+    color: #555;
+}
+
+/* =========================================
+   3. 通用工具類 (Utilities)
+   ========================================= */
+/* 文字顏色 */
+.text-brand,
+.text-primary-brand {
+    color: var(--brand-color) !important;
+}
+
+/* 背景顏色 */
+.bg-brand {
+    background-color: var(--brand-color) !important;
+}
+
+.bg-light-brand {
+    background-color: var(--brand-light) !important;
+}
+
+/* 邊框顏色 */
+.border-brand {
+    border-color: var(--brand-color) !important;
+}
+
+/* 懸停變白 */
+.hover-white {
+    transition: color 0.3s;
+}
+
+.hover-white:hover {
+    color: #fff !important;
+}
+
+/* 限制顯示行數 (多行省略) */
+.text-truncate-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.5;
+    max-height: 3em;
+}
+
+/* 單行省略加強版 */
+.text-truncate {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* 限制顯示 3 行 */
+.clamp {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+}
+
+/* =========================================
+   4. 動畫效果 (Animations)
+   ========================================= */
+/* 文字淡入動畫 */
+.animate-fade-in,
+.animate-fade-up {
+    animation: fadeUp 1s ease-out forwards;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 卡片上浮動畫 */
+.transition-up {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.transition-up:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(224, 122, 148, 0.15) !important;
+}
+
+/* =========================================
+   5. 按鈕樣式 (Buttons)
+   ========================================= */
+/* 實心按鈕 */
+.btn-brand {
+    background-color: var(--brand-color);
+    border-color: var(--brand-color);
+    color: white;
+    border-radius: 50rem;
+    padding: 0.6rem 2rem;
+    transition: all 0.3s;
+}
+
+.btn-brand:hover {
+    background-color: var(--brand-hover);
+    border-color: var(--brand-hover);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(214, 51, 132, 0.4);
+}
+
+/* 框線按鈕 */
+.btn-outline-brand {
+    color: var(--brand-color);
+    border-color: var(--brand-color);
+    border-radius: 50rem;
+    transition: all 0.3s;
+}
+
+.btn-outline-brand:hover,
+.btn-outline-brand.active {
+    background-color: var(--brand-color);
+    border-color: var(--brand-color);
+    color: white;
+}
+
+/* 分頁按鈕樣式覆寫 */
+.page-link {
+    color: var(--brand-color);
+    border: 1px solid #dee2e6;
+    background-color: #fff;
+}
+
+.page-link:hover {
+    color: var(--brand-hover);
+    background-color: var(--brand-light);
+    border-color: #dee2e6;
+}
+
+.page-item.active .page-link {
+    background-color: var(--brand-color) !important;
+    border-color: var(--brand-color) !important;
+    color: white !important;
+    z-index: 1;
+}
+
+.page-link:focus {
+    box-shadow: 0 0 0 0.25rem rgba(214, 51, 132, 0.25);
+}
+
+/* =========================================
+   6. 導覽與頁頭 (Nav & Header)
+   ========================================= */
+/* Hero Section 背景 */
+#home {
+    background: linear-gradient(135deg, #fff 0%, var(--brand-light) 100%);
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+}
+
+/* 學院頁面標題背景 */
+.page-header {
+    background: linear-gradient(135deg, #FFF5F7 0%, #fff 100%);
+    padding: 60px 0;
+    margin-bottom: 2rem;
+}
+
+/* 左側選單 Pill 樣式 */
+.nav-pills .nav-link {
+    color: #6c757d;
+    margin-bottom: 0.5rem;
+}
+
+.nav-pills .nav-link.active {
+    background-color: var(--brand-color);
+    color: white !important;
+}
+
+/* =========================================
+   7. 卡片樣式 (Cards)
+   ========================================= */
+/* 通用產品卡片 */
+.product-card {
+    border: none;
+    background: white;
+    transition: 0.3s;
+}
+
+.product-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.member-price {
+    font-size: 0.9rem;
+    color: var(--brand-color);
+    font-weight: bold;
+}
+
+/* 見證卡片 */
+.testimonial-card {
+    background: white;
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* 會員儀表板數據卡 */
+.dashboard-stat-card {
+    border-left: 5px solid var(--brand-color);
+    background: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* 會員等級卡片 */
+.level-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.level-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15) !important;
+}
+
+/* 科技區塊卡片 */
+.science-card {
+    background-color: #f8f9fa;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.science-card:hover {
+    background-color: var(--brand-light);
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.number-watermark {
+    position: absolute;
+    top: -10px;
+    right: 10px;
+    font-size: 5rem;
+    font-family: 'Noto Serif TC', serif;
+    font-weight: bold;
+    color: #f0f0f0;
+    z-index: -1;
+    opacity: 0.5;
+    transition: all 0.3s ease;
+}
+
+.science-card:hover .number-watermark {
+    color: var(--brand-color);
+    opacity: 0.1;
+}
+
+.number-icon {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #ddd;
+    line-height: 1;
+}
+
+.science-card:hover .number-icon {
+    color: var(--brand-color);
+}
+
+/* 側邊欄分類連結 */
+.category-link {
+    display: block;
+    padding: 10px 15px;
+    color: var(--text-dark);
+    text-decoration: none;
+    border-bottom: 1px solid #eee;
+    transition: all 0.3s ease;
+}
+
+.category-link:hover {
+    color: var(--brand-color);
+    background-color: var(--brand-light);
+    padding-left: 20px;
+}
+
+/* =========================================
+   8. 產品列表橫向滑動 (Horizontal Scroll)
+   ========================================= */
+#product-list {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    gap: 1.5rem;
+    padding-bottom: 20px;
+    padding-left: 5px;
+    padding-right: 5px;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+}
+
+#product-list .product-item {
+    flex: 0 0 auto;
+    width: 280px;
+}
+
+@media (min-width: 768px) {
+    #product-list .product-item {
+        width: 320px;
+    }
+}
+
+/* 捲軸美化 */
+#product-list::-webkit-scrollbar {
+    height: 8px;
+}
+
+#product-list::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+#product-list::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 10px;
+}
+
+#product-list::-webkit-scrollbar-thumb:hover {
+    background: var(--brand-color);
+}
+
+/* 滑動按鈕 */
+#scroll-left,
+#scroll-right {
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid #f0f0f0;
+    cursor: pointer;
+}
+
+#scroll-left:hover,
+#scroll-right:hover {
+    background-color: #fff;
+    transform: translateY(-50%) scale(1.1) !important;
+    color: var(--brand-color);
+}
+
+.position-relative.px-md-4 {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+/* =========================================
+   9. 彈出視窗 (Modals)
+   ========================================= */
+.modal-body img {
+    object-fit: cover;
+}
+
+/* 產品 Modal 圖片區塊 (電腦版) */
+.product-modal-img-col {
+    background-color: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    min-height: 500px;
+}
+
+.product-modal-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    max-height: 80vh;
+}
+
+/* Modal 內文章圖片 */
+#modal-img {
+    width: 100%;
+    aspect-ratio: 6 / 4;
+    /* 或 7.5 / 4 */
+    object-fit: cover;
+    height: auto;
+}
+
+/* Modal 捲軸美化 */
+.modal-body::-webkit-scrollbar {
+    width: 6px;
+}
+
+.modal-body::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+}
+
+/* =========================================
+   10. 後臺 Dashboard 專用版面修正
+   ========================================= */
+
+/* 電腦版：左側選單固定 */
+@media (min-width: 992px) {
+
+    /* 左側選單：固定在視窗左邊 */
+    .sidebar {
+        position: fixed !important;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 100;
+        width: 280px;
+        /* 必須設定固定寬度 */
+        overflow-y: auto;
+        background-color: #fff;
+        border-right: 1px solid #eee;
+    }
+
+    /* 右側內容：往右推擠，避免被擋住 */
+    main {
+        margin-left: 280px !important;
+        /* 這個數值必須跟 Sidebar 寬度一樣 */
+        width: auto;
+    }
+}
+
+/* 手機版：恢復原狀 (上下排列) */
+@media (max-width: 991.98px) {
+    .sidebar {
+        display: none !important;
+        /* 手機版隱藏左側選單，改用漢堡選單 */
+    }
+
+    main {
+        margin-left: 0 !important;
+        /* 手機版內容填滿螢幕 */
+    }
+}
+
+/* 登入頁專屬微調 */
+body {
+    /* 延續首頁的柔和漸層背景 */
+    background: linear-gradient(135deg, #fff5f8 0%, #ffffff 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.login-section {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 40px 0;
+}
+
+.login-card {
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(214, 51, 132, 0.1);
+    /* 淡淡的粉色陰影 */
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+}
+
+/* 裝飾背景球 (呼應首頁設計) */
+.deco-circle {
+    position: absolute;
+    border-radius: 50%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.deco-1 {
+    width: 300px;
+    height: 300px;
+    background: var(--brand-light);
+    top: -50px;
+    right: -50px;
+    opacity: 0.6;
+}
+
+.deco-2 {
+    width: 200px;
+    height: 200px;
+    background: #fff9a6;
+    /* 白金色 */
+    bottom: -20px;
+    left: -20px;
+    opacity: 0.4;
+    filter: blur(40px);
+}
+
+/* 輸入框聚焦效果 */
+.form-control:focus {
+    border-color: var(--brand-color);
+    box-shadow: 0 0 0 0.25rem rgba(214, 51, 132, 0.15);
+}
+
+/* 影片區塊微調 (可選) */
+#video-section .ratio {
+    transition: transform 0.3s ease;
+}
+
+#video-section .ratio:hover {
+    transform: scale(1.01);
+    /* 滑鼠移過去微微放大 */
+}
+
+/* --- 影片藝廊樣式 --- */
+.cursor-pointer {
+    cursor: pointer;
+}
+
+/* 列表項目樣式 */
+.video-item {
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+}
+
+/* 滑鼠移過去 */
+.video-item:hover {
+    background-color: #fff;
+    transform: translateX(5px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* 正在播放的項目 */
+.video-item.active {
+    background-color: #fff;
+    border-color: var(--brand-pink, #d63384);
+    box-shadow: 0 2px 8px rgba(214, 51, 132, 0.1);
+}
+
+.video-item.active h6 {
+    color: var(--brand-pink, #d63384);
+}
+
+/* 影片標題最多顯示兩行 */
+.text-truncate-2 {
+    /* 1. 必須將顯示模式設為舊版的彈性盒子 */
+    display: -webkit-box; 
+    
+    /* 2. 設定排列方向為垂直 (這是編輯器最常報錯的一行，但必須寫) */
+    -webkit-box-orient: vertical; 
+    
+    /* 3. 設定要顯示幾行 (這裡是 2 行) */
+    -webkit-line-clamp: 2; 
+    line-clamp: 2;
+    
+    /* 4. 隱藏超出的文字 */
+    overflow: hidden; 
+}
+
+/* 自訂捲軸樣式 (讓右側捲軸漂亮一點) */
+.video-list-scroll::-webkit-scrollbar {
+    width: 6px;
+}
+
+.video-list-scroll::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.video-list-scroll::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 10px;
+}
+
+.video-list-scroll::-webkit-scrollbar-thumb:hover {
+    background: #bbb;
+}

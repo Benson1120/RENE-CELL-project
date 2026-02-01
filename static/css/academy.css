@@ -1,0 +1,100 @@
+/* ----------------------------------------------------
+           學院專屬樣式 (保持原樣不動)
+        ---------------------------------------------------- */
+
+/* 讓部落格圖片高度一致，避免卡片長短不一 */
+.blog-card-img {
+    height: 200px;
+    width: 100%;
+    object-fit: cover;
+}
+
+/* 側邊欄分類連結樣式 */
+.category-link {
+    display: block;
+    padding: 10px 15px;
+    color: var(--text-dark, #5A5A5A);
+    /* 加入 fallback 顏色避免變數未定義 */
+    text-decoration: none;
+    border-bottom: 1px solid #eee;
+    transition: all 0.3s ease;
+}
+
+.category-link:hover {
+    color: var(--brand-color, #d63384);
+    background-color: var(--brand-light, #fce4ec);
+    padding-left: 20px;
+}
+
+/* 頁面標題背景 (漸層粉) */
+.page-header {
+    background: linear-gradient(135deg, #FFF5F7 0%, #fff 100%);
+    padding: 60px 0;
+    margin-bottom: 2rem;
+}
+
+.clamp {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    box-orient: vertical;
+    overflow: hidden;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+}
+
+/* --- 動畫效果 --- */
+.animate-fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- 分頁按鈕樣式覆寫 --- */
+.page-link {
+    color: var(--brand-color, #d63384);
+    border: 1px solid #dee2e6;
+    background-color: #fff;
+}
+
+.page-link:hover {
+    color: var(--brand-hover, #c02a74);
+    background-color: var(--brand-light, #fce4ec);
+    border-color: #dee2e6;
+}
+
+.page-item.active .page-link {
+    background-color: var(--brand-color, #d63384) !important;
+    border-color: var(--brand-color, #d63384) !important;
+    color: white !important;
+    z-index: 1;
+}
+
+.page-link:focus {
+    box-shadow: 0 0 0 0.25rem rgba(214, 51, 132, 0.25);
+}
+
+/* 設定圖片比例為 6:4 */
+.blog-card-img {
+    width: 100%;
+    aspect-ratio: 6 / 4;
+    object-fit: cover;
+    height: auto;
+}
+
+/* --- 彈出視窗圖片設定 --- */
+#modal-img {
+    width: 100%;
+    aspect-ratio: 7.5 / 4;
+    object-fit: cover;
+    height: auto;
+}
