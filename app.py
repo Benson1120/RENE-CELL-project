@@ -94,6 +94,11 @@ def get_youtube_id(url):
 
 @app.route("/")
 def index():
+    # [終極修正] 每次有人訪問首頁時，都確保資料庫和表格存在
+    # 因為 Render 免費版睡覺後會刪除資料，這行能保證它復活
+    with app.app_context():
+        db.create_all()
+
     return render_template("index.html", version=int(time.time()))
 
 
@@ -389,6 +394,4 @@ def logout():
 
 
 if __name__ == "__main__":
-    with app.app_context():
-        db.create_all()
     app.run(debug=True)
