@@ -43,8 +43,6 @@ login_manager.login_view = "login"
 
 # --- 資料庫模型 ---
 
-git config --global user.name "Your Name"
-git config --global user.email "shk921120@gmail.com"
 
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
