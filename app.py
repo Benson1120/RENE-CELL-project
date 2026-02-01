@@ -18,7 +18,13 @@ app = Flask(__name__)
 
 # --- 設定配置 ---
 app.config["SECRET_KEY"] = "這是一個祕密的鑰匙_請隨意修改"
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///db.sqlite"
+# 原本是: app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///db.sqlite"
+
+# --- 請改成下面這兩行 ---
+basedir = os.path.abspath(os.path.dirname(__file__))
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///" + os.path.join(
+    basedir, "db.sqlite"
+)
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 # 設定上傳檔案大小上限 (例如 100MB)，避免塞爆伺服器
 app.config["MAX_CONTENT_LENGTH"] = 100 * 1024 * 1024
@@ -94,10 +100,13 @@ def get_youtube_id(url):
 
 @app.route("/")
 def index():
-    # [終極修正] 每次有人訪問首頁時，都確保資料庫和表格存在
-    # 因為 Render 免費版睡覺後會刪除資料，這行能保證它復活
-    with app.app_context():
-        db.create_all()
+    # [診斷模式] 嘗試建立資料庫，如果失敗就把錯誤直接印在網頁上
+    try:
+        with app.app_context():
+            db.create_all()
+    except Exception as e:
+        # 如果出錯，網頁會直接告訴你是什麼錯！
+        return f"<h1>資料庫建立失敗 QAQ</h1><p>錯誤原因：{str(e)}</p>"
 
     return render_template("index.html", version=int(time.time()))
 
